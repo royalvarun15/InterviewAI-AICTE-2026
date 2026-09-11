@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>InterviewAI – Intelligent Interview Trainer Agent</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════
+       SCREEN 1 — HOME PAGE
+  ═══════════════════════════════════════════════ -->
+  <div id="screen-home" class="screen active">
+    <header class="hero">
+      <div class="hero-inner">
+        <div class="logo-badge">AI</div>
+        <h1 class="hero-title">InterviewAI</h1>
+        <p class="hero-subtitle">Intelligent Interview Trainer Agent</p>
+        <p class="hero-desc">
+          Prepare smarter for your next job interview. Get role-specific questions,
+          submit your answers, and receive instant AI-style feedback with scores and improvement tips.
+        </p>
+        <button class="btn btn-primary btn-lg" id="btn-start-home">Start Interview</button>
+      </div>
+    </header>
+
+    <!-- Features section -->
+    <section class="features">
+      <div class="container">
+        <h2 class="section-title">Why InterviewAI?</h2>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="feature-icon">&#127919;</div>
+            <h3>Role-Specific Questions</h3>
+            <p>Questions tailored to your job role, experience level, and interview category — technical, HR, or behavioral.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">&#128200;</div>
+            <h3>Instant Feedback</h3>
+            <p>Receive a score out of 10, identified strengths, areas for improvement, and a suggested ideal answer.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">&#128203;</div>
+            <h3>Progress Dashboard</h3>
+            <p>Track total questions attempted, your average score, and session details at a glance.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">&#128161;</div>
+            <h3>Pro Interview Tips</h3>
+            <p>Each feedback response includes a professional tip to sharpen your interview performance.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="how-it-works">
+      <div class="container">
+        <h2 class="section-title">How It Works</h2>
+        <div class="steps">
+          <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-text">
+              <h4>Set Up Your Profile</h4>
+              <p>Enter your name, target job role, experience level, and interview category.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-text">
+              <h4>Answer Questions</h4>
+              <p>Work through interview questions one at a time, typing your best answer.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-text">
+              <h4>Get Feedback</h4>
+              <p>Receive a detailed score, strengths, improvement areas, and a model answer.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-number">4</div>
+            <div class="step-text">
+              <h4>Review Dashboard</h4>
+              <p>Check your overall performance and session summary after the interview.</p>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center;margin-top:2rem;">
+          <button class="btn btn-primary btn-lg" id="btn-start-how">Start Interview</button>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <p>&copy; 2025 InterviewAI — Intelligent Interview Trainer Agent</p>
+    </footer>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       SCREEN 2 — INTERVIEW SETUP
+  ═══════════════════════════════════════════════ -->
+  <div id="screen-setup" class="screen">
+    <div class="topbar">
+      <button class="btn btn-ghost" id="btn-back-setup">&#8592; Home</button>
+      <span class="topbar-title">Interview Setup</span>
+    </div>
+    <div class="container narrow">
+      <div class="card setup-card">
+        <h2 class="card-title">Tell Us About Yourself</h2>
+        <p class="card-subtitle">We'll generate questions perfectly matched to your profile.</p>
+
+        <div class="form-group">
+          <label for="input-name">Your Name</label>
+          <input type="text" id="input-name" placeholder="e.g. Alex Johnson" maxlength="60" />
+        </div>
+
+        <div class="form-group">
+          <label for="select-role">Job Role</label>
+          <select id="select-role">
+            <option value="">-- Select Job Role --</option>
+            <option value="Java Developer">Java Developer</option>
+            <option value="Python Developer">Python Developer</option>
+            <option value="Web Developer">Web Developer</option>
+            <option value="Data Analyst">Data Analyst</option>
+            <option value="AI Engineer">AI Engineer</option>
+            <option value="Software Engineer">Software Engineer</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="select-level">Experience Level</label>
+          <select id="select-level">
+            <option value="">-- Select Level --</option>
+            <option value="Fresher">Fresher</option>
+            <option value="Beginner">Beginner</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Experienced">Experienced</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="select-category">Interview Category</label>
+          <select id="select-category">
+            <option value="">-- Select Category --</option>
+            <option value="Technical">Technical</option>
+            <option value="HR">HR</option>
+            <option value="Behavioral">Behavioral</option>
+          </select>
+        </div>
+
+        <div id="setup-error" class="error-msg" style="display:none;"></div>
+
+        <button class="btn btn-primary btn-full" id="btn-generate">Generate Questions</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       SCREEN 3 — QUESTION / ANSWER
+  ═══════════════════════════════════════════════ -->
+  <div id="screen-question" class="screen">
+    <div class="topbar">
+      <button class="btn btn-ghost" id="btn-back-question">&#8592; Setup</button>
+      <span class="topbar-title" id="topbar-role-label">Interview</span>
+      <button class="btn btn-ghost" id="btn-view-dashboard">Dashboard</button>
+    </div>
+
+    <div class="container narrow">
+      <!-- Progress bar -->
+      <div class="progress-wrap">
+        <div class="progress-info">
+          <span id="progress-label">Question 1 of 5</span>
+          <span id="progress-score-label">Score: 0</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill" id="progress-bar-fill"></div>
+        </div>
+      </div>
+
+      <!-- Question card -->
+      <div class="card question-card">
+        <div class="question-meta">
+          <span class="badge" id="badge-category">Technical</span>
+          <span class="badge badge-level" id="badge-level">Intermediate</span>
+        </div>
+        <p class="question-text" id="question-text">Question loads here…</p>
+
+        <div class="form-group" style="margin-top:1.25rem;">
+          <label for="answer-input">Your Answer</label>
+          <textarea id="answer-input" rows="6" placeholder="Type your answer here…"></textarea>
+        </div>
+
+        <div id="answer-error" class="error-msg" style="display:none;"></div>
+
+        <div class="question-actions">
+          <button class="btn btn-primary" id="btn-submit-answer">Submit Answer</button>
+          <button class="btn btn-outline" id="btn-skip-question">Skip Question</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       SCREEN 4 — FEEDBACK
+  ═══════════════════════════════════════════════ -->
+  <div id="screen-feedback" class="screen">
+    <div class="topbar">
+      <span class="topbar-title">Feedback</span>
+    </div>
+    <div class="container narrow">
+      <div class="card feedback-card">
+        <div class="score-circle-wrap">
+          <div class="score-circle" id="score-circle">
+            <span class="score-value" id="score-value">8</span>
+            <span class="score-denom">/10</span>
+          </div>
+          <p class="score-label" id="score-label">Great Answer!</p>
+        </div>
+
+        <div class="feedback-section">
+          <h4 class="fb-heading fb-strengths">&#10003; Strengths</h4>
+          <p id="fb-strengths-text"></p>
+        </div>
+        <div class="feedback-section">
+          <h4 class="fb-heading fb-improve">&#9650; Areas for Improvement</h4>
+          <p id="fb-improve-text"></p>
+        </div>
+        <div class="feedback-section">
+          <h4 class="fb-heading fb-suggested">&#128218; Suggested Answer</h4>
+          <p id="fb-suggested-text"></p>
+        </div>
+        <div class="feedback-section fb-tip-section">
+          <h4 class="fb-heading fb-tip">&#128161; Interview Tip</h4>
+          <p id="fb-tip-text"></p>
+        </div>
+
+        <div class="feedback-actions">
+          <button class="btn btn-primary" id="btn-next-question">Next Question</button>
+          <button class="btn btn-outline" id="btn-end-interview">End Interview</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       SCREEN 5 — DASHBOARD
+  ═══════════════════════════════════════════════ -->
+  <div id="screen-dashboard" class="screen">
+    <div class="topbar">
+      <button class="btn btn-ghost" id="btn-back-dashboard">&#8592; Continue</button>
+      <span class="topbar-title">Dashboard</span>
+    </div>
+    <div class="container">
+      <div class="dashboard-header">
+        <h2 id="dashboard-greeting">Welcome back!</h2>
+        <p id="dashboard-subline">Here's your interview session summary.</p>
+      </div>
+
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-value" id="stat-attempted">0</div>
+          <div class="stat-label">Questions Attempted</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="stat-avg-score">0.0</div>
+          <div class="stat-label">Average Score</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="stat-role">—</div>
+          <div class="stat-label">Job Role</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="stat-level">—</div>
+          <div class="stat-label">Experience Level</div>
+        </div>
+      </div>
+
+      <div class="card history-card">
+        <h3 class="card-title">Question History</h3>
+        <div id="history-list" class="history-list">
+          <p class="muted">No questions answered yet.</p>
+        </div>
+      </div>
+
+      <div style="text-align:center;margin-top:1.5rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+        <button class="btn btn-primary" id="btn-continue-interview">Continue Interview</button>
+        <button class="btn btn-outline" id="btn-new-interview">New Interview</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
